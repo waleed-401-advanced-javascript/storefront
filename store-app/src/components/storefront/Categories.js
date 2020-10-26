@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {swapActive} from '../../store/categories'
 
+
 const Categories = props => {
 
   return (
