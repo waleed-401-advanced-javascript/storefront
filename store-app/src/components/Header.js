@@ -6,6 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import {connect} from 'react-redux';
 import {swapActive} from "../store/categories";
 
+
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
@@ -35,6 +36,7 @@ function CenteredTabs(props) {
             onClick={() => props.swapActive(category)} ></Tab>
           })}        
                 </Tabs>
+                
             </Paper>
         </header>
     )
