@@ -6,13 +6,15 @@
 
 
 // Define initial state
-
+import axios from 'axios'
 const initialState = {
     categories: {
       electronics: {displayName: 'Electronic Products', description: 'Devices to keep you connected'},
       food: {displayName: 'Artisanal Eats', description: 'Healthy, locally sourced ingredients'},
     },
-      activeCategory: {displayName: 'Electronic Products', description: 'Devices to keep you connected'},
+      activeCategory: {
+        displayName: 'Electronic Products', description: 'Devices to keep you connected'
+      },
   
   }
   
@@ -44,4 +46,15 @@ const initialState = {
       type: 'Change',
       payload: active
     }
+  }
+  export function getCategories() {
+
+    return async function (dispatch){
+      const response = await axios.get('https://api-js401.herokuapp.com/api/v1/categories');
+      dispatch({
+        type: 'GetCategories',
+        payload: response.data.results
+      })
+    }
+  
   }

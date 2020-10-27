@@ -7,7 +7,7 @@
 
 
 // Define initial state
-
+import axios from 'axios'
 const initialState = {
     products: [
       {category: 'electronics', name: 'Laptop', description: 'For surfing the web on the go', price: '$2999', inventory: 20},
@@ -33,9 +33,24 @@ const initialState = {
           return product.category === payload;
         })
         return {...state, displayedProducts};
-  
+
+        case 'GetCategories':
+          return {...state, categories: payload};
+
       default:
         return state;
   
     }
+  }
+
+  export function getProducts() {
+
+    return async function (dispatch){
+      const response = await axios.get('https://api-js401.herokuapp.com/api/v1/products');
+      dispatch({
+        type: 'GetProducts',
+        payload: response.data.results
+      })
+    }
+  
   }
