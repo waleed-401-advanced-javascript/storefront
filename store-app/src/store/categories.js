@@ -9,11 +9,11 @@
 import axios from 'axios'
 const initialState = {
     categories: {
-      electronics: {displayName: 'Electronic Products', description: 'Devices to keep you connected'},
-      food: {displayName: 'Artisanal Eats', description: 'Healthy, locally sourced ingredients'},
+      // electronics: {displayName: 'Electronic Products', description: 'Devices to keep you connected'},
+      // food: {displayName: 'Artisanal Eats', description: 'Healthy, locally sourced ingredients'},
     },
       activeCategory: {
-        displayName: 'Electronic Products', description: 'Devices to keep you connected'
+        // displayName: 'Electronic Products', description: 'Devices to keep you connected'
       },
   
   }
@@ -32,6 +32,10 @@ const initialState = {
         let activeCategory = categories[payload];
         return {activeCategory, categories};
         
+        case 'GetCategories':
+          console.log('axios work !')
+      return {...state, categories: payload};
+
       default:
         return state;
   
@@ -50,7 +54,7 @@ const initialState = {
   export function getCategories() {
 
     return async function (dispatch){
-      const response = await axios.get('https://api-js401.herokuapp.com/api/v1/categories');
+      const response = await axios.get('https://alhrthani-todos.herokuapp.com/api/v1/products');
       dispatch({
         type: 'GetCategories',
         payload: response.data.results

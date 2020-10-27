@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 function CenteredTabs(props) {
   useEffect(() => {
     props.getProducts();
-  }, [])
+  })
 
   const classes = useStyles();
   const [value, setValue] = React.useState(0);

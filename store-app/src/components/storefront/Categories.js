@@ -8,8 +8,8 @@ const Categories = props => {
 
   useEffect(() => {
     props.getProducts();
-  }, [])
-
+  })
+   console.log(props)
   return (
 
       <section className="category">
