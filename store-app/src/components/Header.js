@@ -1,11 +1,11 @@
-import React from 'react';
+import React,{useEffect}from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import {connect} from 'react-redux';
 import {swapActive} from "../store/categories";
-
+import {getProducts} from "../store/products"
 
 const useStyles = makeStyles({
   root: {
@@ -14,6 +14,10 @@ const useStyles = makeStyles({
 });
 
 function CenteredTabs(props) {
+  useEffect(() => {
+    props.getProducts();
+  })
+
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
    console.log(props)
@@ -45,6 +49,6 @@ const mapStateToProps = state => ({
     category: state.categories,
   })
   
-  const mapDispatchToProps = {swapActive}
+  const mapDispatchToProps = {swapActive,getProducts}
   
   export default connect(mapStateToProps, mapDispatchToProps)(CenteredTabs);
