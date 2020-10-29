@@ -5,7 +5,6 @@ import { Card } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import {AddCart} from '../../store/cart';
 import {getProducts} from '../../store/products';
 import { Link } from 'react-router-dom';
