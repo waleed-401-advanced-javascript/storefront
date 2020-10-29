@@ -15,6 +15,7 @@ export default (state = initalState, action) => {
 };
 
 export const ViewAction = (product) => {
+  console.log('view action',product)
   return {
     type: 'View',
     payload: product

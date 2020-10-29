@@ -8,7 +8,7 @@ export default (state = initalState, action) => {
   let basket = state.basket;
   switch (type) {
     case "Add":
-     
+    
       console.log('AddCart ' ,Object.values(payload))
 
       if (basket.indexOf(payload.name) <= -1) {
