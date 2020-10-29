@@ -13,7 +13,7 @@ const initialState = {
       // food: {displayName: 'Artisanal Eats', description: 'Healthy, locally sourced ingredients'},
     },
       activeCategory: {
-        // displayName: 'Electronic Products', description: 'Devices to keep you connected'
+       name: 'Electronic Products', description: 'Devices to keep you connected'
       },
   
   }
@@ -29,9 +29,20 @@ const initialState = {
   
       case 'Change':
         let categories = state.categories;
-        let activeCategory = categories[payload];
+       
+        let list = []
+        categories.forEach(element => {
+           list.push(Object.values(element))
+          
+        });
+         console.log('list',list)
+         for(let i = 0; i < list.length;i++ ){
+        if (payload===list[i][1]){
+
+        let activeCategory = list[i][1]
         return {activeCategory, categories};
-        
+      }}
+      break
         case 'GetCategories':
           console.log('axios work !')
       return {...state, categories: payload};
@@ -54,7 +65,7 @@ const initialState = {
   export function getCategories() {
 
     return async function (dispatch){
-      const response = await axios.get('https://alhrthani-todos.herokuapp.com/api/v1/products');
+      const response = await axios.get('https://api-js401.herokuapp.com/api/v1/categories');
       dispatch({
         type: 'GetCategories',
         payload: response.data.results

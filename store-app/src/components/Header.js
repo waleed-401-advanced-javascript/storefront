@@ -4,51 +4,62 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import {connect} from 'react-redux';
-import {swapActive} from "../store/categories";
-import {getProducts} from "../store/products"
+import {getCategories} from "../store/categories"
+import { swapActive } from '../store/categories'
+import { AddCart } from '../store/cart'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
   root: {
-    flexGrow: 1,
+      flexGrow: 1,
   },
 });
-
 function CenteredTabs(props) {
-  useEffect(() => {
-    props.getProducts();
-  })
-
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-   console.log(props)
+  console.log(props)
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+      setValue(newValue);
   };
 
-    return (
-        <header>
-                    <Paper className={classes.root}>
-                <Tabs
-                    value={value}
-                    onChange={handleChange}
-                    indicatorColor="primary"
-                    textColor="primary"
-                    centered
-                >
-                  {Object.keys(props.category.categories).map(category => {
-            return <Tab label={`${category}`} 
-            onClick={() => props.swapActive(category)} ></Tab>
-          })}        
-                </Tabs>
-                
-            </Paper>
-        </header>
-    )
+  useEffect(() => {
+      props.getCategories();
+  }, [])
+  return (
+
+      <header>
+          {console.log('category ------> ', props.category.categories)}
+
+          <Paper className={classes.root}>
+
+              <Tabs
+                  value={value}
+                  onChange={handleChange}
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered
+              >
+                  {Object.values(props.category.categories).map(category => {
+                      console.log('category : ', category)
+                      return <Tab  component={Link} 
+                      to={'./'} label={`${category.name}`}
+                          onClick={() => props.swapActive(category.name)} ></Tab>
+                  })}
+                  <Tab component={Link} 
+                          to={'./cart'} label={`Cart (${ 0 || props.basket.length})`}  ></Tab>
+              </Tabs>
+              {/* <Button  style={{marginTop:'-45px', float:'right'}}></Button> */}
+
+          </Paper>
+
+      </header>
+  )
 }
 const mapStateToProps = state => ({
-    category: state.categories,
-  })
-  
-  const mapDispatchToProps = {swapActive,getProducts}
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(CenteredTabs);
+  category: state.categories,
+  basket: state.cart.basket,
+
+
+})
+const mapDispatchToProps = { AddCart, swapActive, getCategories }
+export default connect(mapStateToProps, mapDispatchToProps)(CenteredTabs);

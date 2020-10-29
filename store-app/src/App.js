@@ -1,19 +1,21 @@
 import React from 'react';
-import './App.css';
+import './style.scss';
 import Header from './components/Header';
-import Categories from './components/storefront/Categories';
-import Products from './components/storefront/Products';
+import Main from './components/main/main';
 import Footer from './components/Footer';
-import SimpleCart from './components/cart/SimpleCart'
+
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
     <>
-     <Header />
-     <SimpleCart/>
-      <Categories />
-      <Products />
-    <Footer />
+  <>
+      <BrowserRouter>
+      <Header/>
+        <Main />
+        <Footer />
+      </BrowserRouter>
+    </>
     </>
 );
 }

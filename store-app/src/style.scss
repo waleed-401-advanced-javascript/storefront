@@ -1,0 +1,39 @@
+.cart-div{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.cart{
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  justify-items:start;
+  flex-direction: column;
+
+}
+main{
+    background-color: hsla(8, 5, 100, .8);
+    background-image: url('https://previews.123rf.com/images/rokvel/rokvel1610/rokvel161000301/64159398-blurred-empty-sky-surface-blue-sky-background-with-tiny-clouds-cloudy-blue-sky-abstract-background-s.jpg');
+}
+
+FOOTER {
+    background-color: grey;
+}
+
+// .cart{
+    // background-color:rgba($color: rgb(159, 233, 223), $alpha: .25);
+// }
+// Table{
+//     display: flex;
+//     text-align: center;
+//     justify-content: center;
+//     justify-items: center;
+// }
+// Form{
+//     display: flex;
+//     text-align: center;
+//     justify-content: center;
+//     justify-items: center;
+// }
