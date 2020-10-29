@@ -29,6 +29,7 @@ const initialState = {
     switch(type) {
   
       case 'Change':
+        console.log('helllo',state.products)
         let displayedProducts = state.products.filter(product => {
           return product.category === payload;
         })
@@ -50,6 +51,7 @@ const initialState = {
 
     return async function (dispatch){
       const response = await axios.get('https://api-js401.herokuapp.com/api/v1/products');
+      console.log(response.data.results)
       dispatch({
         type: 'GetProducts',
         payload: response.data.results
